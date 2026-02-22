@@ -831,6 +831,7 @@ const vcData = [
     {name:"Riverside Ventures",location:"USA",region:"USA",stages:["Seed", "Series A"],sectors:["Consumer", "Media"],check_size:"",aum:""},
     {name:"Roble Ventures",location:"USA",region:"USA",stages:["Seed", "Series A"],sectors:["Technology"],check_size:"$200K - $2M",aum:""},
     {name:"Robot Ventures",location:"USA",region:"USA",stages:["Pre-Seed", "Seed"],sectors:["Technology"],check_size:"$100K - $1M",aum:""},
+    {name:"Roo Capital",location:"New York, NY",region:"USA",stages:["Pre-Seed", "Seed", "Series A"],sectors:["Healthcare", "AI", "Cybersecurity"],check_size:"$500K-$10M",aum:"$150M"},
     {name:"Rock Health Capital",location:"USA",region:"USA",stages:["Pre-Seed", "Seed", "Series A"],sectors:["Technology"],check_size:"$500K - $3M",aum:""},
     {name:"Rockies Venture Fund",location:"USA",region:"USA",stages:["Seed"],sectors:["Technology"],check_size:"$100K - $500K",aum:""},
     {name:"Root Ventures",location:"USA",region:"USA",stages:["Seed", "Series B", "Growth"],sectors:["Technology"],check_size:"$1M - $3M",aum:""},
