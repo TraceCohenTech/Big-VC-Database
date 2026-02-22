@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VC Universe - 1,000+ Verified Venture Capital Firms</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; min-height: 100vh; color: #e6edf3; }
+
+        /* TICKERS */
+        .ticker-container { overflow: hidden; background: linear-gradient(180deg, #161b22 0%, #0d1117 100%); border-bottom: 1px solid #30363d; }
+        .ticker-row { display: flex; white-space: nowrap; padding: 6px 0; }
+        .ticker-row:nth-child(1) { animation: ticker1 20s linear infinite; }
+        .ticker-row:nth-child(2) { animation: ticker2 15s linear infinite; background: rgba(255,255,255,0.02); }
+        .ticker-row:nth-child(3) { animation: ticker1 25s linear infinite; }
+        .ticker-item { flex-shrink: 0; padding: 0 25px; font-weight: 600; font-size: 0.8em; color: #8b949e; letter-spacing: 0.5px; }
+        .ticker-item.highlight { color: #58a6ff; }
+        @keyframes ticker1 { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes ticker2 { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+        /* HEADER */
+        .header { text-align: center; padding: 50px 20px 30px; background: linear-gradient(180deg, #161b22 0%, #0d1117 100%); }
+        .header h1 { font-size: 3.2em; font-weight: 800; color: #fff; letter-spacing: -1px; margin-bottom: 8px; }
+        .header h1 span { color: #58a6ff; }
+        .header p { color: #8b949e; font-size: 1em; }
+
+        /* QUIZ BANNER */
+        .quiz-banner { background: linear-gradient(135deg, #238636 0%, #2ea043 100%); padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; }
+        .quiz-banner:hover { background: linear-gradient(135deg, #2ea043 0%, #3fb950 100%); }
+        .quiz-banner h3 { color: #fff; font-size: 1.2em; margin-bottom: 5px; }
+        .quiz-banner p { color: rgba(255,255,255,0.8); font-size: 0.9em; }
+
+        /* HOT RIGHT NOW */
+        .hot-section { padding: 40px 20px; background: #0d1117; border-bottom: 1px solid #30363d; }
+        .section-header { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 25px; }
+        .section-header h2 { font-size: 1.1em; text-transform: uppercase; letter-spacing: 2px; color: #e6edf3; }
+        .fire-icon { font-size: 1.3em; }
+        .hot-grid { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
+        .hot-card { background: linear-gradient(135deg, #1f2937 0%, #111827 100%); border: 1px solid #f97316; border-radius: 12px; padding: 20px; width: 220px; transition: all 0.3s ease; cursor: pointer; position: relative; }
+        .hot-card::before { content: ''; position: absolute; top: -1px; left: -1px; right: -1px; bottom: -1px; background: linear-gradient(135deg, #f97316, #ea580c); border-radius: 12px; z-index: -1; opacity: 0; transition: opacity 0.3s ease; }
+        .hot-card:hover::before { opacity: 1; }
+        .hot-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(249,115,22,0.2); }
+        .hot-badge { position: absolute; top: -8px; right: 15px; background: #f97316; color: #fff; font-size: 0.7em; font-weight: 700; padding: 4px 8px; border-radius: 4px; }
+        .hot-card h4 { color: #fff; font-size: 1.1em; margin-bottom: 5px; }
+        .hot-card .reason { color: #f97316; font-size: 0.8em; margin-bottom: 10px; }
+        .hot-card .meta { color: #8b949e; font-size: 0.75em; }
+
+        /* STATS BAR */
+        .stats-bar { display: flex; justify-content: center; gap: 60px; padding: 30px 20px; background: #161b22; flex-wrap: wrap; border-bottom: 1px solid #30363d; }
+        .stat { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: 800; color: #fff; }
+        .stat-label { color: #8b949e; font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; }
+
+        /* CONTROLS */
+        .controls { padding: 15px 20px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; background: #161b22; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #30363d; }
+        .search-box { padding: 10px 18px; font-size: 0.95em; border: 1px solid #30363d; border-radius: 8px; background: #0d1117; color: #e6edf3; width: 280px; outline: none; transition: all 0.3s ease; }
+        .search-box:focus { border-color: #58a6ff; box-shadow: 0 0 0 3px rgba(88,166,255,0.15); transform: scale(1.02); }
+        select { padding: 10px 14px; border: 1px solid #30363d; border-radius: 8px; background: #0d1117; color: #e6edf3; cursor: pointer; outline: none; font-size: 0.9em; transition: all 0.3s ease; }
+        select:hover, select:focus { border-color: #58a6ff; transform: scale(1.02); }
+        .quiz-btn { padding: 10px 18px; background: linear-gradient(135deg, #238636 0%, #2ea043 100%); border: none; border-radius: 8px; color: #fff; font-weight: 600; cursor: pointer; font-size: 0.9em; transition: all 0.3s ease; }
+        .quiz-btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(46,160,67,0.4); }
+
+        /* ACTIVE FILTERS */
+        .active-filters { display: flex; justify-content: center; gap: 8px; padding: 10px; flex-wrap: wrap; min-height: 20px; }
+        .filter-tag { background: rgba(88,166,255,0.15); color: #58a6ff; padding: 6px 12px; border-radius: 20px; font-size: 0.8em; display: flex; align-items: center; gap: 6px; animation: filterIn 0.3s ease; }
+        .filter-tag .remove { cursor: pointer; opacity: 0.7; }
+        .filter-tag .remove:hover { opacity: 1; }
+        @keyframes filterIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+
+        /* CONTAINER */
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .results-info { text-align: center; padding: 10px; color: #8b949e; font-size: 0.85em; transition: all 0.3s ease; }
+
+        /* TABLE */
+        .vc-table { width: 100%; border-collapse: collapse; background: #161b22; border-radius: 12px; overflow: hidden; border: 1px solid #30363d; }
+        .vc-table th { background: #1f2937; padding: 14px 18px; text-align: left; font-weight: 600; color: #e6edf3; cursor: pointer; border-bottom: 1px solid #30363d; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s ease; }
+        .vc-table th:hover { background: #2d3748; color: #58a6ff; }
+        .vc-table td { padding: 14px 18px; border-bottom: 1px solid #21262d; vertical-align: middle; }
+        .vc-table tr { transition: all 0.3s ease; }
+        .vc-table tbody tr { animation: rowIn 0.4s ease forwards; opacity: 0; }
+        .vc-table tbody tr:hover { background: rgba(88,166,255,0.08); cursor: pointer; }
+        @keyframes rowIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+        .vc-name { font-weight: 600; color: #fff; font-size: 0.95em; }
+        .tag { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 0.7em; margin: 1px; font-weight: 500; transition: all 0.2s ease; }
+        .tag:hover { transform: scale(1.1); }
+        .tag-stage { background: rgba(88,166,255,0.15); color: #58a6ff; }
+        .tag-sector { background: rgba(63,185,80,0.15); color: #3fb950; }
+        .location { color: #8b949e; font-size: 0.85em; }
+        .check-size { color: #3fb950; font-weight: 600; font-size: 0.85em; }
+
+        /* PAGINATION */
+        .pagination { display: flex; justify-content: center; gap: 6px; padding: 25px; flex-wrap: wrap; }
+        .page-btn { padding: 8px 14px; border: 1px solid #30363d; border-radius: 6px; background: #161b22; color: #e6edf3; cursor: pointer; font-size: 0.85em; font-weight: 500; transition: all 0.2s ease; }
+        .page-btn:hover, .page-btn.active { background: #58a6ff; color: #fff; border-color: #58a6ff; transform: scale(1.05); }
+        .page-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+        /* FOOTER */
+        .footer { text-align: center; padding: 30px; color: #484f58; border-top: 1px solid #21262d; font-size: 0.8em; }
+
+        /* QUIZ MODAL */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal { background: #161b22; border: 1px solid #30363d; border-radius: 16px; padding: 35px; max-width: 550px; width: 90%; position: relative; animation: modalIn 0.3s ease; max-height: 90vh; overflow-y: auto; }
+        @keyframes modalIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .modal h2 { font-size: 1.8em; color: #fff; margin-bottom: 8px; }
+        .modal .subtitle { color: #8b949e; margin-bottom: 25px; }
+        .modal .close { position: absolute; top: 15px; right: 20px; font-size: 1.5em; color: #8b949e; cursor: pointer; transition: all 0.2s ease; }
+        .modal .close:hover { color: #fff; transform: scale(1.1); }
+
+        /* QUIZ STEPS */
+        .quiz-step { display: none; }
+        .quiz-step.active { display: block; animation: stepIn 0.4s ease; }
+        @keyframes stepIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .quiz-question { font-size: 1.1em; color: #fff; margin-bottom: 20px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+        .quiz-option { padding: 15px 20px; background: #0d1117; border: 2px solid #30363d; border-radius: 10px; cursor: pointer; transition: all 0.2s ease; color: #e6edf3; }
+        .quiz-option:hover { border-color: #58a6ff; background: rgba(88,166,255,0.1); }
+        .quiz-option.selected { border-color: #58a6ff; background: rgba(88,166,255,0.15); }
+        .quiz-progress { display: flex; gap: 8px; margin-bottom: 25px; }
+        .quiz-dot { width: 10px; height: 10px; border-radius: 50%; background: #30363d; transition: all 0.3s ease; }
+        .quiz-dot.active { background: #58a6ff; transform: scale(1.2); }
+        .quiz-dot.completed { background: #3fb950; }
+
+        /* QUIZ RESULTS */
+        .quiz-results { display: none; }
+        .quiz-results.active { display: block; }
+        .result-card { background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 20px; margin-bottom: 12px; transition: all 0.3s ease; cursor: pointer; }
+        .result-card:hover { border-color: #58a6ff; transform: translateX(5px); }
+        .result-card h4 { color: #fff; margin-bottom: 5px; }
+        .result-card .match-score { color: #3fb950; font-weight: 700; font-size: 0.9em; margin-bottom: 8px; }
+        .result-card .result-meta { color: #8b949e; font-size: 0.85em; }
+
+        /* SIMILAR VCS PANEL */
+        .similar-panel { display: none; position: fixed; top: 0; right: 0; width: 400px; height: 100vh; background: #161b22; border-left: 1px solid #30363d; z-index: 500; padding: 25px; overflow-y: auto; animation: slideIn 0.3s ease; }
+        .similar-panel.active { display: block; }
+        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        .similar-panel h3 { color: #fff; margin-bottom: 5px; }
+        .similar-panel .panel-subtitle { color: #8b949e; font-size: 0.85em; margin-bottom: 20px; }
+        .similar-panel .close-panel { position: absolute; top: 20px; right: 20px; font-size: 1.3em; color: #8b949e; cursor: pointer; }
+        .similar-panel .close-panel:hover { color: #fff; }
+        .similar-card { background: #0d1117; border: 1px solid #30363d; border-radius: 10px; padding: 15px; margin-bottom: 10px; transition: all 0.2s ease; }
+        .similar-card:hover { border-color: #58a6ff; }
+        .similar-card h4 { color: #fff; font-size: 1em; margin-bottom: 5px; }
+        .similar-card .similarity { color: #58a6ff; font-size: 0.8em; margin-bottom: 8px; }
+        .similar-card .tags { margin-top: 8px; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .hot-card { width: 100%; }
+            .vc-table { font-size: 0.8em; }
+            .search-box { width: 100%; }
+            .stat-number { font-size: 1.8em; }
+            .similar-panel { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ticker-container">
+        <div class="ticker-row" id="ticker1"></div>
+        <div class="ticker-row" id="ticker2"></div>
+        <div class="ticker-row" id="ticker3"></div>
+    </div>
+
+    <div class="header">
+        <h1>VC <span>Universe</span></h1>
+        <p>The definitive database of 1,000+ verified venture capital firms</p>
+    </div>
+
+    <div class="quiz-banner" onclick="openQuiz()">
+        <h3>Find Your Perfect VC Match</h3>
+        <p>Answer 4 quick questions to discover VCs aligned with your startup</p>
+    </div>
+
+    <div class="hot-section">
+        <div class="section-header">
+            <span class="fire-icon">🔥</span>
+            <h2>Hot Right Now</h2>
+        </div>
+        <div class="hot-grid" id="hot-grid"></div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat"><div class="stat-number" id="total-count">0</div><div class="stat-label">Total Firms</div></div>
+        <div class="stat"><div class="stat-number" id="usa-count">0</div><div class="stat-label">USA</div></div>
+        <div class="stat"><div class="stat-number" id="israel-count">0</div><div class="stat-label">Israel</div></div>
+        <div class="stat"><div class="stat-number" id="global-count">0</div><div class="stat-label">Global</div></div>
+    </div>
+
+    <div class="controls">
+        <input type="text" class="search-box" id="search" placeholder="Search firms, locations, stages...">
+        <select id="stage-filter"><option value="">All Stages</option><option value="Pre-Seed">Pre-Seed</option><option value="Seed">Seed</option><option value="Series A">Series A</option><option value="Series B">Series B</option><option value="Growth">Growth</option></select>
+        <select id="region-filter"><option value="">All Regions</option><option value="USA">USA</option><option value="Israel">Israel</option><option value="Europe">Europe</option><option value="Asia">Asia</option></select>
+        <select id="sector-filter"><option value="">All Sectors</option><option value="AI">AI / ML</option><option value="Fintech">Fintech</option><option value="Healthcare">Healthcare</option><option value="Enterprise">Enterprise</option><option value="Consumer">Consumer</option><option value="Crypto">Crypto</option><option value="Climate">Climate</option><option value="Deeptech">Deeptech</option></select>
+        <button class="quiz-btn" onclick="openQuiz()">VC Matchmaker</button>
+    </div>
+
+    <div class="active-filters" id="active-filters"></div>
+
+    <div class="container">
+        <div class="results-info" id="results-info"></div>
+        <table class="vc-table">
+            <thead>
+                <tr>
+                    <th onclick="sortTable('name')">Firm Name</th>
+                    <th onclick="sortTable('location')">Location</th>
+                    <th>Stages</th>
+                    <th>Sectors</th>
+                    <th>Check Size</th>
+                </tr>
+            </thead>
+            <tbody id="vc-tbody"></tbody>
+        </table>
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <div class="footer"><p>Last updated: February 2026</p></div>
+
+    <!-- Quiz Modal -->
+    <div class="modal-overlay" id="quiz-modal" onclick="closeQuiz(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeQuiz()">&times;</span>
+            <h2>VC Matchmaker</h2>
+            <p class="subtitle">Find VCs that match your startup in 30 seconds</p>
+
+            <div class="quiz-progress" id="quiz-progress"></div>
+
+            <div class="quiz-step active" data-step="1">
+                <p class="quiz-question">What stage is your startup?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, 'stage', 'Pre-Seed')">Pre-Seed — Just an idea or MVP</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'stage', 'Seed')">Seed — Early traction, building product</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'stage', 'Series A')">Series A — Product-market fit</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'stage', 'Series B')">Series B+ — Scaling rapidly</div>
+                </div>
+            </div>
+
+            <div class="quiz-step" data-step="2">
+                <p class="quiz-question">What's your primary sector?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, 'sector', 'AI')">AI / Machine Learning</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'sector', 'Fintech')">Fintech / Financial Services</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'sector', 'Healthcare')">Healthcare / Biotech</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'sector', 'Enterprise')">Enterprise / SaaS</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'sector', 'Consumer')">Consumer / Marketplace</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'sector', 'Crypto')">Crypto / Web3</div>
+                </div>
+            </div>
+
+            <div class="quiz-step" data-step="3">
+                <p class="quiz-question">How much are you raising?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, 'amount', 'small')">Under $500K</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'amount', 'medium')">$500K - $2M</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'amount', 'large')">$2M - $10M</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'amount', 'mega')">$10M+</div>
+                </div>
+            </div>
+
+            <div class="quiz-step" data-step="4">
+                <p class="quiz-question">Where are you based?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, 'location', 'sf')">San Francisco / Bay Area</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'location', 'ny')">New York</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'location', 'usa')">Other US City</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'location', 'global')">International</div>
+                </div>
+            </div>
+
+            <div class="quiz-results" id="quiz-results">
+                <p class="quiz-question">Your Top VC Matches</p>
+                <div id="results-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Similar VCs Panel -->
+    <div class="similar-panel" id="similar-panel">
+        <span class="close-panel" onclick="closeSimilarPanel()">&times;</span>
+        <h3 id="similar-title">VCs Like This</h3>
+        <p class="panel-subtitle">Funds with similar focus and stage</p>
+        <div id="similar-list"></div>
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+let currentPage = 1;
+const perPage = 50;
+let filteredData = [...vcData];
+let sortField = 'name';
+let sortDir = 1;
+let quizAnswers = {};
+let currentQuizStep = 1;
+const totalQuizSteps = 4;
+
+// Initialize tickers
+function initTickers() {
+    const row1 = ['Sequoia', 'a16z', 'Benchmark', 'Accel', 'Greylock', 'Founders Fund', 'Kleiner Perkins', 'NEA', 'Lightspeed', 'Index', 'Bessemer', 'GV', 'Khosla', 'Tiger Global', 'Thrive'];
+    const row2 = ['Y Combinator', 'First Round', 'Ribbit', '8VC', 'Lux Capital', 'DCVC', 'Paradigm', 'Coatue', 'Battery', 'IVP', 'Felicis', 'CRV', 'Craft', 'General Catalyst', 'Insight'];
+    const row3 = ['Softbank', 'QED', 'Emergence', 'Homebrew', 'Hustle Fund', 'Initialized', 'Matrix', 'Mayfield', 'Menlo', 'Norwest', 'Redpoint', 'Spark', 'USV', 'Wing', 'Amplify'];
+
+    document.getElementById('ticker1').innerHTML = row1.concat(row1).map((vc, i) => `<span class="ticker-item ${i % 3 === 0 ? 'highlight' : ''}">${vc}</span>`).join('');
+    document.getElementById('ticker2').innerHTML = row2.concat(row2).map((vc, i) => `<span class="ticker-item ${i % 4 === 0 ? 'highlight' : ''}">${vc}</span>`).join('');
+    document.getElementById('ticker3').innerHTML = row3.concat(row3).map((vc, i) => `<span class="ticker-item ${i % 3 === 0 ? 'highlight' : ''}">${vc}</span>`).join('');
+}
+
+// Hot Right Now
+function initHotSection() {
+    const hotVCs = [
+        { name: 'Andreessen Horowitz', reason: 'Leading $2B AI fund', meta: 'Seed to Growth • AI Focus' },
+        { name: 'Thrive Capital', reason: 'Backed OpenAI Series B', meta: 'Series A+ • Technology' },
+        { name: 'Lux Capital', reason: 'Defense tech surge', meta: 'Seed to B • Deeptech' },
+        { name: 'Ribbit Capital', reason: 'Fintech deals heating up', meta: 'Seed to Growth • Fintech' },
+        { name: 'Founders Fund', reason: 'SpaceX follow-on', meta: 'All Stages • Hard Tech' }
+    ];
+
+    document.getElementById('hot-grid').innerHTML = hotVCs.map((vc, i) => `
+        <div class="hot-card" onclick="searchVC('${vc.name}')">
+            <span class="hot-badge">#${i+1}</span>
+            <h4>${vc.name}</h4>
+            <div class="reason">${vc.reason}</div>
+            <div class="meta">${vc.meta}</div>
+        </div>
+    `).join('');
+}
+
+function searchVC(name) {
+    document.getElementById('search').value = name;
+    applyFilters();
+    document.querySelector('.controls').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Quiz Functions
+function openQuiz() {
+    document.getElementById('quiz-modal').style.display = 'flex';
+    resetQuiz();
+}
+
+function closeQuiz(e) {
+    if (!e || e.target.id === 'quiz-modal') {
+        document.getElementById('quiz-modal').style.display = 'none';
+    }
+}
+
+function resetQuiz() {
+    quizAnswers = {};
+    currentQuizStep = 1;
+    document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+    document.querySelector('.quiz-step[data-step="1"]').classList.add('active');
+    document.getElementById('quiz-results').classList.remove('active');
+    document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+    updateQuizProgress();
+}
+
+function updateQuizProgress() {
+    let html = '';
+    for (let i = 1; i <= totalQuizSteps; i++) {
+        let cls = 'quiz-dot';
+        if (i < currentQuizStep) cls += ' completed';
+        if (i === currentQuizStep) cls += ' active';
+        html += `<div class="${cls}"></div>`;
+    }
+    document.getElementById('quiz-progress').innerHTML = html;
+}
+
+function selectOption(el, key, value) {
+    el.parentElement.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    quizAnswers[key] = value;
+
+    setTimeout(() => {
+        if (currentQuizStep < totalQuizSteps) {
+            currentQuizStep++;
+            document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+            document.querySelector(`.quiz-step[data-step="${currentQuizStep}"]`).classList.add('active');
+            updateQuizProgress();
+        } else {
+            showQuizResults();
+        }
+    }, 300);
+}
+
+function showQuizResults() {
+    document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('quiz-results').classList.add('active');
+
+    // Score and rank VCs
+    const scored = vcData.map(vc => {
+        let score = 0;
+
+        // Stage match
+        if ((vc.stages || []).some(s => s.includes(quizAnswers.stage))) score += 40;
+
+        // Sector match
+        if ((vc.sectors || []).some(s => s.toLowerCase().includes(quizAnswers.sector?.toLowerCase() || ''))) score += 35;
+
+        // Check size match
+        const checkStr = (vc.check_size || '').toLowerCase();
+        if (quizAnswers.amount === 'small' && (checkStr.includes('50k') || checkStr.includes('100k') || checkStr.includes('250k'))) score += 15;
+        if (quizAnswers.amount === 'medium' && (checkStr.includes('500k') || checkStr.includes('1m') || checkStr.includes('2m'))) score += 15;
+        if (quizAnswers.amount === 'large' && (checkStr.includes('5m') || checkStr.includes('10m'))) score += 15;
+        if (quizAnswers.amount === 'mega' && (checkStr.includes('10m') || checkStr.includes('50m') || checkStr.includes('100m'))) score += 15;
+
+        // Location bonus
+        const loc = (vc.location || '').toLowerCase();
+        if (quizAnswers.location === 'sf' && (loc.includes('san francisco') || loc.includes('palo alto') || loc.includes('menlo'))) score += 10;
+        if (quizAnswers.location === 'ny' && loc.includes('new york')) score += 10;
+        if (quizAnswers.location === 'global' && vc.region !== 'USA') score += 10;
+
+        return { ...vc, score };
+    }).sort((a, b) => b.score - a.score).slice(0, 8);
+
+    document.getElementById('results-list').innerHTML = scored.map(vc => `
+        <div class="result-card" onclick="searchVC('${vc.name}'); closeQuiz();">
+            <h4>${vc.name}</h4>
+            <div class="match-score">${vc.score}% Match</div>
+            <div class="result-meta">${vc.location || 'USA'} • ${(vc.stages || []).slice(0,2).join(', ')} • ${vc.check_size || 'Varies'}</div>
+        </div>
+    `).join('');
+}
+
+// Similar VCs
+function showSimilarVCs(vc) {
+    const similar = vcData.filter(v => v.name !== vc.name).map(v => {
+        let similarity = 0;
+        const sharedStages = (vc.stages || []).filter(s => (v.stages || []).includes(s)).length;
+        const sharedSectors = (vc.sectors || []).filter(s => (v.sectors || []).includes(s)).length;
+        similarity = (sharedStages * 20) + (sharedSectors * 25);
+        if (v.region === vc.region) similarity += 15;
+        return { ...v, similarity };
+    }).sort((a, b) => b.similarity - a.similarity).slice(0, 6);
+
+    document.getElementById('similar-title').textContent = `VCs Like ${vc.name}`;
+    document.getElementById('similar-list').innerHTML = similar.map(v => `
+        <div class="similar-card" onclick="searchVC('${v.name}'); closeSimilarPanel();">
+            <h4>${v.name}</h4>
+            <div class="similarity">${v.similarity}% similar</div>
+            <div class="tags">
+                ${(v.stages || []).slice(0,2).map(s => `<span class="tag tag-stage">${s}</span>`).join('')}
+                ${(v.sectors || []).slice(0,2).map(s => `<span class="tag tag-sector">${s}</span>`).join('')}
+            </div>
+        </div>
+    `).join('');
+
+    document.getElementById('similar-panel').classList.add('active');
+}
+
+function closeSimilarPanel() {
+    document.getElementById('similar-panel').classList.remove('active');
+}
+
+// Stats
+function updateStats() {
+    document.getElementById('total-count').textContent = vcData.length;
+    document.getElementById('usa-count').textContent = vcData.filter(v => v.region === 'USA').length;
+    document.getElementById('israel-count').textContent = vcData.filter(v => v.region === 'Israel').length;
+    document.getElementById('global-count').textContent = vcData.filter(v => v.region === 'Europe' || v.region === 'Asia').length;
+}
+
+// Active filters display
+function updateActiveFilters() {
+    const filters = [];
+    const search = document.getElementById('search').value;
+    const stage = document.getElementById('stage-filter').value;
+    const region = document.getElementById('region-filter').value;
+    const sector = document.getElementById('sector-filter').value;
+
+    if (search) filters.push({ type: 'search', value: search, label: `"${search}"` });
+    if (stage) filters.push({ type: 'stage', value: stage, label: stage });
+    if (region) filters.push({ type: 'region', value: region, label: region });
+    if (sector) filters.push({ type: 'sector', value: sector, label: sector });
+
+    document.getElementById('active-filters').innerHTML = filters.map(f => `
+        <span class="filter-tag">
+            ${f.label}
+            <span class="remove" onclick="clearFilter('${f.type}')">&times;</span>
+        </span>
+    `).join('');
+}
+
+function clearFilter(type) {
+    if (type === 'search') document.getElementById('search').value = '';
+    if (type === 'stage') document.getElementById('stage-filter').value = '';
+    if (type === 'region') document.getElementById('region-filter').value = '';
+    if (type === 'sector') document.getElementById('sector-filter').value = '';
+    applyFilters();
+}
+
+// Table rendering with staggered animation
+function renderTable() {
+    const start = (currentPage - 1) * perPage;
+    const end = start + perPage;
+    const pageData = filteredData.slice(start, end);
+
+    const resultsEl = document.getElementById('results-info');
+    resultsEl.textContent = `Showing ${start + 1}-${Math.min(end, filteredData.length)} of ${filteredData.length} firms`;
+    resultsEl.style.transform = 'scale(1.05)';
+    setTimeout(() => resultsEl.style.transform = 'scale(1)', 200);
+
+    const tbody = document.getElementById('vc-tbody');
+    tbody.innerHTML = pageData.map((vc, i) => `
+        <tr style="animation-delay: ${i * 0.03}s" onclick="showSimilarVCs(vcData.find(v => v.name === '${vc.name.replace(/'/g, "\\'")}'))">
+            <td class="vc-name">${vc.name}</td>
+            <td class="location">${vc.location || 'USA'}</td>
+            <td>${(vc.stages || []).slice(0,3).map(s => `<span class="tag tag-stage">${s}</span>`).join('')}</td>
+            <td>${(vc.sectors || []).slice(0,3).map(s => `<span class="tag tag-sector">${s}</span>`).join('')}</td>
+            <td class="check-size">${vc.check_size || '-'}</td>
+        </tr>
+    `).join('');
+    renderPagination();
+}
+
+function renderPagination() {
+    const totalPages = Math.ceil(filteredData.length / perPage);
+    const pagination = document.getElementById('pagination');
+    let html = `<button class="page-btn" onclick="goToPage(1)" ${currentPage === 1 ? 'disabled' : ''}>First</button>`;
+    html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>←</button>`;
+    const start = Math.max(1, currentPage - 2);
+    const end = Math.min(totalPages, currentPage + 2);
+    for (let i = start; i <= end; i++) {
+        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+    }
+    html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>→</button>`;
+    html += `<button class="page-btn" onclick="goToPage(${totalPages})" ${currentPage === totalPages ? 'disabled' : ''}>Last</button>`;
+    pagination.innerHTML = html;
+}
+
+function goToPage(page) {
+    currentPage = page;
+    renderTable();
+    document.querySelector('.controls').scrollIntoView({ behavior: 'smooth' });
+}
+
+function sortTable(field) {
+    if (sortField === field) sortDir *= -1;
+    else { sortField = field; sortDir = 1; }
+    filteredData.sort((a, b) => String(a[field] || '').localeCompare(String(b[field] || '')) * sortDir);
+    currentPage = 1;
+    renderTable();
+}
+
+function applyFilters() {
+    const search = document.getElementById('search').value.toLowerCase();
+    const stage = document.getElementById('stage-filter').value;
+    const region = document.getElementById('region-filter').value;
+    const sector = document.getElementById('sector-filter').value;
+
+    filteredData = vcData.filter(vc => {
+        const matchSearch = !search || vc.name.toLowerCase().includes(search) || (vc.location || '').toLowerCase().includes(search) || (vc.stages || []).some(s => s.toLowerCase().includes(search)) || (vc.sectors || []).some(s => s.toLowerCase().includes(search));
+        const matchStage = !stage || (vc.stages || []).some(s => s.includes(stage));
+        const matchRegion = !region || vc.region === region;
+        const matchSector = !sector || (vc.sectors || []).some(s => s.toLowerCase().includes(sector.toLowerCase()));
+        return matchSearch && matchStage && matchRegion && matchSector;
+    });
+    currentPage = 1;
+    updateActiveFilters();
+    renderTable();
+}
+
+// Event listeners
+document.getElementById('search').addEventListener('input', applyFilters);
+document.getElementById('stage-filter').addEventListener('change', applyFilters);
+document.getElementById('region-filter').addEventListener('change', applyFilters);
+document.getElementById('sector-filter').addEventListener('change', applyFilters);
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeQuiz(); closeSimilarPanel(); }
+});
+
+// Initialize
+initTickers();
+initHotSection();
+updateStats();
+renderTable();
+    </script>
+</body>
+</html>
