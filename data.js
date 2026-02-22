@@ -194,6 +194,7 @@ const vcData = [
     {name:"Commerce Ventures",location:"USA",region:"USA",stages:["Pre-Seed", "Seed", "Series B", "Growth"],sectors:["Technology"],check_size:"$100K - $5M",aum:""},
     {name:"Commonweal Ventures",location:"USA",region:"USA",stages:["Pre-Seed", "Seed", "Series A"],sectors:["Technology"],check_size:"$500K",aum:""},
     {name:"Company Ventures",location:"USA",region:"USA",stages:["Pre-Seed", "Seed"],sectors:["Technology"],check_size:"$500K-$1.5M",aum:""},
+    {name:"Companyon Ventures",location:"USA",region:"USA",stages:["Series A"],sectors:["Enterprise", "B2B SaaS"],check_size:"",aum:"$41M"},
     {name:"Compound",location:"New York, NY",region:"USA",stages:["Pre-Seed", "Seed"],sectors:["Fintech", "Healthcare", "Enterprise"],check_size:"$500K-$3M",aum:"$300M"},
     {name:"Compound Ventures (FKA Metamorphic Ventures)",location:"New York, NY",region:"USA",stages:["Seed", "Series A"],sectors:["Enterprise"],check_size:"",aum:"142M"},
     {name:"Concrete Rose Capital",location:"USA",region:"USA",stages:["Pre-Seed", "Seed", "Series A"],sectors:["Technology"],check_size:"$100K - $5M",aum:""},
