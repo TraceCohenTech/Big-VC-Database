@@ -944,6 +944,7 @@ const vcData = [
     {name:"Surface Ventures",location:"USA",region:"USA",stages:["Pre-Seed", "Seed"],sectors:["Technology"],check_size:"$250K - $2M",aum:""},
     {name:"Surround Ventures",location:"Tel Aviv, Israel",region:"Israel",stages:["Seed", "Series A"],sectors:["Media", "Entertainment", "Commerce"],check_size:"$500K-$5M",aum:""},
     {name:"SV Angel",location:"San Francisco, CA",region:"USA",stages:["Pre-Seed", "Seed"],sectors:["Consumer", "Enterprise", "AI"],check_size:"$100K-$1M",aum:"$500M"},
+    {name:"SVC",location:"Austin, TX",region:"USA",stages:["Seed", "Series A"],sectors:["Climate", "Defense", "Space", "AI"],check_size:"$1M-$2M",aum:""},
     {name:"SVG Ventures",location:"USA",region:"USA",stages:["Seed"],sectors:["Technology"],check_size:"$10K - $100K",aum:""},
     {name:"SWAT Equity Partners",location:"New York, NY",region:"USA",stages:["Seed", "Series A"],sectors:["Consumer"],check_size:"",aum:""},
     {name:"Swell Partners",location:"New York, NY",region:"USA",stages:["Seed", "Series A"],sectors:["Enterprise"],check_size:"",aum:""},
