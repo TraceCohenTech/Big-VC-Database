@@ -12,6 +12,7 @@ const vcData = [
     {name:"1984 Ventures",location:"USA",region:"USA",stages:["Pre-Seed", "Seed"],sectors:["Healthcare"],check_size:"$750K",aum:""},
     {name:"1kx",location:"London, UK",region:"Europe",stages:["Seed", "Series A"],sectors:["Crypto", "Web3"],check_size:"$500K-$10M",aum:"$300M"},
     {name:"1Up Ventures",location:"USA",region:"USA",stages:["Seed", "Series A"],sectors:["Gaming"],check_size:"$500K",aum:""},
+    {name:"202 Ventures",location:"Chicago / Tel Aviv",region:"USA",stages:["Pre-Seed", "Seed"],sectors:["Deeptech", "Defense", "Industrial", "Hardware"],check_size:"$500K",aum:""},
     {name:"2048 Ventures",location:"New York, NY",region:"USA",stages:["Pre-Seed", "Seed"],sectors:["Biotech", "Deeptech"],check_size:"$500K-$1.5M",aum:""},
     {name:"20VC Fund",location:"London, UK",region:"Europe",stages:["Pre-Seed", "Seed", "Series A", "Series B"],sectors:["Enterprise", "Consumer"],check_size:"$250K-$5M",aum:"$140M"},
     {name:"25M Health",location:"USA",region:"USA",stages:["Pre-Seed", "Seed", "Series B"],sectors:["Healthcare"],check_size:"$500K - $1M",aum:""},
