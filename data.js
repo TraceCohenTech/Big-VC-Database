@@ -639,6 +639,7 @@ const vcData = [
     {name:"Morpheus Ventures",location:"USA",region:"USA",stages:["Seed", "Series B", "Growth"],sectors:["Technology"],check_size:"$1M - $10M",aum:""},
     {name:"MosaicAt",location:"USA",region:"USA",stages:["Pre-Seed", "Seed", "Series A"],sectors:["Technology"],check_size:"$10-$1M",aum:""},
     {name:"Mousse Partners",location:"New York, NY",region:"USA",stages:["Series A", "Series B", "Growth"],sectors:["Enterprise"],check_size:"",aum:""},
+    {name:"MOVE Venture Capital",location:"Omaha, NE",region:"USA",stages:["Pre-Seed", "Seed"],sectors:["Enterprise", "Consumer"],check_size:"$100K",aum:""},
     {name:"Moxxie Ventures",location:"USA",region:"USA",stages:["Seed", "Series A"],sectors:["Technology"],check_size:"$250K - $1.5M",aum:""},
     {name:"Mucker Capital",location:"USA",region:"USA",stages:["Pre-Seed", "Seed", "Series A"],sectors:["Technology"],check_size:"$100K - $3M",aum:""},
     {name:"Multicoin Capital",location:"Austin, TX",region:"USA",stages:["Seed", "Series A"],sectors:["Crypto", "Web3"],check_size:"$1M-$25M",aum:"$1B"},
