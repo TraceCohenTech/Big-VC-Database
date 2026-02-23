@@ -623,6 +623,7 @@ const vcData = [
     {name:"Mesa Ventures",location:"New York, NY",region:"USA",stages:["Seed", "Series A"],sectors:["Enterprise", "Consumer", "Media"],check_size:"",aum:""},
     {name:"MetaProp",location:"New York, NY",region:"USA",stages:["Seed", "Series A"],sectors:["Proptech", "Real Estate"],check_size:"$500K-$10M",aum:"$250M"},
     {name:"Metis Capital",location:"USA",region:"USA",stages:["Seed", "Series B", "Growth"],sectors:["Technology"],check_size:"$10K - 5M",aum:""},
+    {name:"MFV Partners",location:"Palo Alto, CA",region:"USA",stages:["Seed", "Series A"],sectors:["Deeptech", "Hardware", "Biotech"],check_size:"$1M-$2M",aum:""},
     {name:"MHS Capital",location:"USA",region:"USA",stages:["Seed", "Series B", "Growth"],sectors:["Technology"],check_size:"$1M - $3M",aum:""},
     {name:"MI Ventures",location:"New York, NY",region:"USA",stages:["Seed"],sectors:["Enterprise"],check_size:"",aum:""},
     {name:"Millennium Technology Value Partners",location:"New York, NY",region:"USA",stages:["Growth"],sectors:["Enterprise"],check_size:"",aum:"414M"},
