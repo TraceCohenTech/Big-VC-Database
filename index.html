@@ -381,6 +381,7 @@ function closeQuiz(e) {
 function resetQuiz() {
     quizAnswers = {};
     currentQuizStep = 1;
+    isTransitioning = false;
     document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
     document.querySelector('.quiz-step[data-step="1"]').classList.add('active');
     document.getElementById('quiz-results').classList.remove('active');
@@ -399,7 +400,12 @@ function updateQuizProgress() {
     document.getElementById('quiz-progress').innerHTML = html;
 }
 
+let isTransitioning = false;
+
 function selectOption(el, key, value) {
+    if (isTransitioning) return; // Prevent double-clicks
+    isTransitioning = true;
+
     el.parentElement.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
     el.classList.add('selected');
     quizAnswers[key] = value;
@@ -413,7 +419,8 @@ function selectOption(el, key, value) {
         } else {
             showQuizResults();
         }
-    }, 300);
+        isTransitioning = false;
+    }, 400);
 }
 
 function showQuizResults() {
