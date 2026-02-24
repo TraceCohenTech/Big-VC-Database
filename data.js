@@ -1076,6 +1076,7 @@ const vcData = [
     {name:"Vanagon Ventures",location:"Vienna, Austria",region:"Europe",stages:["Pre-Seed", "Seed"],sectors:["Climate"],check_size:"",aum:"€20M"},
     {name:"Vanedge CapitalVenture",location:"USA",region:"USA",stages:["Seed", "Series B", "Growth"],sectors:["Technology"],check_size:"$1M - $15M",aum:""},
     {name:"Variant",location:"USA",region:"USA",stages:["Seed", "Series A"],sectors:["Technology"],check_size:"$250K - $750K",aum:""},
+    {name:"Vashon",location:"USA",region:"USA",stages:["Seed", "Series A"],sectors:["Hardware", "Deeptech", "Industrial"],check_size:"$250K-$2M",aum:"$20M"},
     {name:"Vast Ventures",location:"New York, NY",region:"USA",stages:["Seed", "Series A"],sectors:["Enterprise"],check_size:"",aum:"1M"},
     {name:"Vast VenturesInvestor",location:"USA",region:"USA",stages:["Pre-Seed", "Seed", "Series B", "Growth"],sectors:["Technology"],check_size:"$250K - $3M",aum:""},
     {name:"Vayner/RSE",location:"New York, NY",region:"USA",stages:["Seed", "Series A", "Series B", "Growth"],sectors:["Enterprise"],check_size:"",aum:""},
